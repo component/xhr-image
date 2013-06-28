@@ -1,7 +1,7 @@
 
 # xhr-image
 
-  XHR-driven `Image` for progress events.
+  XHR-driven `Image` for progress events to make pretty progress indicators when loading images.
 
 ## Installation
 
