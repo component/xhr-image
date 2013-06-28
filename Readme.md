@@ -11,7 +11,7 @@
 
 ## Example
 
-``js
+```js
 var XHRImage = require('xhr-image');
 
 var img = new XHRImage('http://i.cloudup.com/0chKjveyrS.png');
