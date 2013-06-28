@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>xhr-image - XHR driven images for progress events</title>
+  <style>
+    body {
+      padding: 200px;
+    }
+
+    #progress {
+      width: 300px;
+      height: 2px;
+      background: #eee;
+    }
+
+    #progress > div {
+      width: 200px;
+      height: 2px;
+      background: #0b90ff;
+      -webkit-transition: width 50ms ease-out;
+    }
+
+    img {
+      width: 90%;
+    }
+  </style>
+</head>
+<body>
+  <div id="progress"><div></div></div>
+  <script src="build/build.js"></script>
+
+  <script>
+    var XHRImage = require('xhr-image');
+    var progress = document.querySelector('#progress > div');
+
+    var img = new XHRImage('http://i.cloudup.com/0chKjveyrS.png');
+
+    img.on('progress', function(e){
+      progress.style.width = (e.percent | 0) + '%';
+    });
+
+    img.on('load', function(){
+      var el = document.querySelector('#progress');
+      el.parentNode.removeChild(el);
+
+      var i = new Image;
+      i.src = URL.createObjectURL(img.xhr.response);
+      document.body.appendChild(i);
+    });
+  </script>
+</body>
+</html>
