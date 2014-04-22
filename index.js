@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -46,10 +45,13 @@ Image.prototype.abort = function(){
 
 /**
  * Handle progress.
+ * https://developer.mozilla.org/es/docs/XMLHttpRequest/Usar_XMLHttpRequest#Monitoring_progress
  */
 
 Image.prototype.onprogress = function(e){
+  if (!e.lengthComputable) return;
   e.percent = e.loaded / e.total * 100;
+  
   this.emit('progress', e);
 };
 
